@@ -1,0 +1,14 @@
+browser/appdata/
+*.old
+#pki/key
+#pki/crt
+pki/req
+pki/newcerts
+## MacOS
+*.DS_Store
+### Vim ###
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]

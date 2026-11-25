@@ -1,0 +1,8 @@
+V	350923141858Z		01	unknown	/CN=ldap.formation.lab
+V	350923142055Z		02	unknown	/CN=sp.formation.lab
+V	350923174059Z		03	unknown	/CN=idp-stagiaire.formation.lab
+V	350923174216Z		04	unknown	/CN=cas.formation.lab
+V	350923174306Z		05	unknown	/CN=idp.formation.lab
+V	350924154249Z		06	unknown	/CN=esup-otp-api.formation.lab
+V	350924154354Z		07	unknown	/CN=esup-otp-manager.formation.lab
+V	351007124200Z		08	unknown	/CN=sp-stagiaire.formation.lab

@@ -1,0 +1,6 @@
+{
+    "level": "debug",
+    "path": "/opt/esup-otp-api/log/",
+    "filename": "esup-otp-api-info.log",
+    "archiveFileName": "audit.log"
+}

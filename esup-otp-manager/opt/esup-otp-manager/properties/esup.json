@@ -1,0 +1,46 @@
+{
+    "authentication": "CAS",
+    "CAS": {
+        "version": "CAS3.0",
+        "casBaseURL": "https://cas.formation.lab/cas",
+        "serviceBaseURL": "https://esup-otp-manager.formation.lab/login",
+        "nameAttribute": "uid"
+    },
+    "port": "",
+    "api_url": "https://esup-otp-api.formation.lab",
+    "api_password":"changeit",
+    "session_secret_key": "changeit",
+    "admins": ["etudiant1"],
+    "admins_attributes": {"eduPersonPrimaryOrgUnitDN": ["o=maths,dc=formation,dc=lab"]},
+    "managers": ["etudiant2"],
+    "managers_attributes": {"supannentiteaffectation": ["z-123"]},
+    "#how_to use users_method": "remove '#' in front of methods. You can add others acls",
+    "users_methods" :{
+       "#random_code" : {"deny" : {"edupersonaffiliation" : ["student","alum"],"memberof":["cn=esup-otp.not_random_code,ou=groups,dc=univ-ville,dc=fr"]}},
+       "#random_code_mail" : {"allow" : {"edupersonaffiliation":["student","alum"],"memberof":["cn=esup-otp.random_code_mail,ou=groups,dc=univ-ville,dc=fr"]}},
+       "#bypass" : {"allow" : {"memberof":["cn=esup-otp.bypass,ou=groups,dc=univ-ville,dc=fr"]}}
+    },
+    "transport_regexes": {
+        "sms":  "^((0[67](([.]|-| )?[0-9]){8})|((00|[+])(([.]|-| )?[0-9]){7,15}))$",
+        "#mail": "^(?!.*(?:univ[.]fr|univ-paris[.]fr)$).*$"
+    },
+    "#how_to methods_not_deactivable_by_users": "Can be used for 'passcode_grid' or 'bypass'. Users will only be able to regenerate codes.",
+    "methods_not_deactivable_by_users": [],
+    "#how_to default_language": "available languages: ['en', 'fr']",
+    "default_language": "fr",
+    "dev": {},
+    "logs": {
+        "main": {
+            "level": "debug",
+            "console": true,
+            "file": "/opt/esup-otp-manager/log/main.log"
+         },
+        "access": {
+            "format": "dev",
+            "console": true,
+            "file": "/opt/esup-otp-manager/log/access.log"
+         }
+    },
+    "#how_to trustedProxies": "see https://expressjs.com/en/guide/behind-proxies.html",
+    "trustedProxies": ["127.0.0.1", "loopback", "::1"]
+}

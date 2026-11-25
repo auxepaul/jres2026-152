@@ -1,0 +1,6 @@
+JAVA_HOME=/usr
+CATALINA_HOME=/opt/tomcat
+CATALINA_BASE=/opt/tomcat
+CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+CATALINA_OPTS="-Duser.timezone=Europe/Paris -Xmx2000m -server -Didp.home=/opt/shibboleth-idp"
+UMASK=0022

@@ -1,0 +1,16 @@
+[Unit]
+Description=esup-otp-api nodejs app
+Documentation=https://github.com/EsupPortail/esup-otp-api
+After=network.target
+
+[Service]
+Type=simple
+User=esup
+Group=esup
+WorkingDirectory=/opt/esup-otp-api
+ExecStart=/usr/bin/node run
+Environment=NODE_EXTRA_CA_CERTS=/etc/pki/tls/certs/formation.lab_CA.pem
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

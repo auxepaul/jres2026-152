@@ -1,0 +1,262 @@
+dn: dc=formation,dc=lab
+objectClass: dcObject
+objectClass: organization
+o: formation.lab
+dc: formation
+
+dn: ou=people,dc=formation,dc=lab
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,dc=formation,dc=lab
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: cn=read,dc=formation,dc=lab
+objectClass: top
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: read
+userPassword: read
+
+dn: uid=etudiant1,ou=people,dc=formation,dc=lab
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: supannPerson
+objectClass: supannCMS
+objectClass: eduPerson
+objectClass: schacLinkageIdentifiers
+cn: Dupont Jean
+sn: Dupont
+audio: nom
+displayName: Jean Dupont
+eduPersonAffiliation: student
+eduPersonAffiliation: member
+eduPersonNickname: Jean
+eduPersonOrgDN: dc=formation,dc=lab
+eduPersonOrgUnitDN: o=maths,dc=formation,dc=lab
+eduPersonPrimaryAffiliation: student
+eduPersonPrimaryOrgUnitDN: o=maths,dc=formation,dc=lab
+eduPersonPrincipalName: jdupont@formation.lab
+facsimileTelephoneNumber: 0102030405
+givenName: Jean
+l: Paris
+labeledURI: http://example.org/dupont
+mail: jean.dupont@formation.lab
+mailForwardingAddress: jeanperso@example.org
+mobile: 0600000000
+o: formation.lab
+ou: maths
+postalAddress: 1 rue de Paris$12345 Ville
+preferredLanguage: FR
+supannActivite: {CNU}5404
+supannAliasLogin: dupont
+supannAutreTelephone: 1234567890
+supannCivilite: Mr
+supannCodeINE: 1234567890G
+supannEntiteAffectation: z-123
+supannEntiteAffectation: z-124
+supannEntiteAffectationPrincipale: z-123
+supannEtablissement: {AUTRE}formation.lab
+supannEtuAnneeInscription: 2008
+supannEtuCursusAnnee: {SUPANN}L3
+supannEtuDiplome: {SISE}2001350
+supannEtuElementPedagogique: {UAI:0171463Y}4929
+supannEtuEtape: {UAI:0171463Y}401
+supannEtuId: 12345
+supannEtuInscription: [etab={UAI}0131843H][anneeinsc=2007][regimeinsc={SISE}
+ 10][sectdisc={SISE}04][typedip={SISE}YA][cursusann=D3][affect=56R17][diplom
+ e={SISE}2001099][etape={UAI:0131843H}B8EFAI-B8EFA3]
+supannEtuRegimeInscription: {SISE}10
+supannEtuSecteurDisciplinaire: {SISE}27
+supannEtuTypeDiplome: {SISE}DC
+supannListeRouge: FALSE
+supannMailPerso: jeanperso@example.org
+supannRefId: {INE}1234567890G
+supannRefId: {APOGEE}12345
+supannEtablissement: {ILN}1-341725201
+supannRoleEntite: [role=PRESIDENT][type=CONSEIL-ETUDIANT]
+supannRoleGenerique: PRESIDENT-CONSEIL-ETUDIANT
+telephoneNumber: +33 1 23 45 67 89
+title: M.
+uid: etudiant1
+userPassword:: e1NTSEF9ckszZzdoS2VFcG1oZGRtQzZ4cDJpdkdZVnU5US85RUU=
+supannAutreMail: etud1@fai1.fr
+supannAutreMail: etud2@fai2.fr
+supannConsentement: {SUPANNMAILPRIVE:SECOURS}INTERNE
+supannConsentement: {MAIL}FER
+supannCMSType: etudiant
+supannRessourceEtatDate: {COMPTE}A::20180115:
+supannRessourceEtatDate: {COMPTE}A:SupannSursis:20210912:20211212
+supannRessourceEtatDate: {COMPTE}I:SupannExpire:20211212:20220612
+supannRessourceEtat: {COMPTE}A
+supannRessourceEtat: {MAIL}I:SupannExpire
+supannFCSub: Ab1234567890Z
+supannNomDeNaissance: Dupont
+supannPrenomsEtatCivil: Jean Pierre
+supannOIDCGenre: male
+supannOIDCDateDeNaissance: 1993-02-04
+supannCodeINSEEPaysDeNaissance: 99100
+schacPersonalUniqueCode: urn:schac:personalUniqueCode:int:esi:fr:1234567890G
+
+dn: uid=etudiant2,ou=people,dc=formation,dc=lab
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: supannPerson
+objectClass: eduPerson
+cn: Dupond Pierre
+sn: Dupond
+audio: etudiant2
+displayName: Pierre Dupond
+eduPersonNickname: Pierre
+eduPersonOrgDN: dc=formation,dc=lab
+eduPersonOrgUnitDN: o=maths,dc=formation,dc=lab
+eduPersonPrimaryAffiliation: student
+eduPersonPrimaryOrgUnitDN: o=maths,dc=formation,dc=lab
+eduPersonPrincipalName: pdupond@formation.lab
+facsimileTelephoneNumber: 0102030405
+givenName: Pierre
+l: Paris
+labeledURI: http://example.org/pdupond
+mail: pierre.dupond@formation.lab
+mailForwardingAddress: pierreperso@exemple.org
+mobile: 0600000000
+o: formation.lab
+ou: maths
+postalAddress: 1 rue de Paris$12345 Ville
+preferredLanguage: FR
+supannActivite: {CNU}5404
+supannAliasLogin: pdupond
+supannAutreTelephone: 1234567890
+supannCivilite: Mr
+supannCodeINE: 12345
+supannEntiteAffectation: z-123
+supannEntiteAffectationPrincipale: z-123
+supannEtablissement: {AUTRE}formation.lab
+supannEtuAnneeInscription: 2008
+supannEtuCursusAnnee: {SUPANN}L3
+supannEtuDiplome: {SISE}2001350
+supannEtuElementPedagogique: {UAI:0171463Y}4929
+supannEtuEtape: {UAI:0171463Y}401
+supannEtuId: 12345
+supannEtuInscription: [etab={UAI}0131843H][anneeinsc=2007][regimeinsc={SISE}
+ 10][sectdisc={SISE}04][typedip={SISE}YA][cursusann=D3][affect=56R17][diplom
+ e={SISE}2001099][etape={UAI:0131843H}B8EFAI-B8EFA3]
+supannEtuRegimeInscription: {SISE}10
+supannEtuSecteurDisciplinaire: {SISE}27
+supannEtuTypeDiplome: {SISE}DC
+supannListeRouge: FALSE
+supannMailPerso: pierreperso@formation.lab
+supannEtablissement: {ILN}1-341725201
+supannRoleEntite: [role=PRESIDENT][type=CONSEIL-ETUDIANT]
+supannRoleGenerique: PRESIDENT-CONSEIL-ETUDIANT
+telephoneNumber: +33 1 23 45 67 89
+title: M.
+uid: etudiant2
+userPassword:: e1NTSEF9M2hSQmp6L1hqcU1TNjhmandnd2tZWjZ4UVY2cFdqYjk=
+eduPersonAffiliation: student
+eduPersonAffiliation: member
+eduPersonAffiliation: alumni
+
+dn: uid=lecteur1,ou=people,dc=formation,dc=lab
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: supannPerson
+objectClass: eduPerson
+cn:: RHVwb25kIGZyYW7Dp29pcw==
+sn: Dupond
+audio: lecteur1
+displayName: Francois Dupond
+eduPersonAffiliation: library-walk-in
+eduPersonNickname: Dupond
+eduPersonOrgDN: dc=formation,dc=lab
+eduPersonPrimaryAffiliation: library-walk-in
+eduPersonPrincipalName: fdupond@formation.lab
+facsimileTelephoneNumber: 0506070809
+givenName: francois
+l: Rennes
+labeledURI: http://exemple.org/pignon
+mailForwardingAddress: francois.dupond@exemple.org
+mobile: 0606060606
+o: formation.lab
+preferredLanguage: FR
+supannEmpId: lecteur1
+supannActivite: {CNU}5404
+supannAliasLogin: fdupond
+supannAutreTelephone: 1234567890
+supannCivilite: Mr
+supannEntiteAffectationPrincipale: z-123
+supannEtablissement: {AUTRE}formation.lab
+supannListeRouge: FALSE
+supannMailPerso: dupondperso@exemple.org
+uid: lecteur1
+userPassword:: e1NTSEF9YWpseUp3L0RqWnFYbEF1MnVaSDNPbUJRN0hCdUFXN2Y=
+mail: francois.dupond@exemple.org
+
+dn: uid=personnel1,ou=people,dc=formation,dc=lab
+uid: personnel1
+supannEtablissement: {ILN}1-341725201
+eduPersonAffiliation: member
+eduPersonAffiliation: employee
+eduPersonAffiliation: staff
+eduPersonAffiliation: alumni
+telephoneNumber: +33 1 23 45 67 89
+supannAutreTelephone: 1234567890
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: supannPerson
+objectClass: eduPerson
+preferredLanguage: FR
+supannListeRouge: FALSE
+eduPersonOrgDN: dc=formation,dc=lab
+title: M.
+o: formation.lab
+postalAddress: 1 rue de Paris$12345 Ville
+supannCivilite: Mr
+supannEmpId: personnel1
+eduPersonPrimaryAffiliation: staff
+eduPersonPrincipalName: 636887368@formation.lab
+displayName: Albert Grospieds
+givenName: Albert
+cn: Grospieds Albert
+sn: Grospieds
+mail: albert.grospieds@formation.lab
+userPassword:: e1NIQX1Ya3ZpNTVlVXpPd1VtV0syYmpVTmFzOHNSNGc9
+
+dn: uid=enseignant1,ou=people,dc=formation,dc=lab
+uid: enseignant1
+sn: Grospieds
+eduPersonPrimaryAffiliation: staff
+supannEtablissement: {ILN}1-341725201
+eduPersonOrgDN: dc=formation,dc=lab
+o: formation.lab
+eduPersonAffiliation: member
+eduPersonAffiliation: employee
+eduPersonAffiliation: staff
+eduPersonAffiliation: teacher
+eduPersonAffiliation: faculty
+telephoneNumber: +33 1 23 45 67 89
+title: M.
+eduPersonPrincipalName: 636887368@formation.lab
+postalAddress: 1 rue de Paris$12345 Ville
+preferredLanguage: FR
+supannEmpId: enseignant1
+supannAutreTelephone: 1234567890
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: supannPerson
+objectClass: eduPerson
+supannListeRouge: FALSE
+supannCivilite: Mr
+displayName: Georges
+cn: Grospieds Georges
+givenName: Georges
+mail: georges.grospieds@formation.lab
+userPassword:: e01ENX1RaHlqRjFHWG5zVXJwczhYQWwxVzBnPT0=

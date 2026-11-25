@@ -1,0 +1,190 @@
+---
+version: "3.5"
+
+networks:
+  lab-jres2026:
+    name: formation.lab
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
+
+services:
+  cas:
+    build:
+      context: cas/
+      args:
+        CAS_BASE_IMAGE: ${CAS_BASE_IMAGE}
+        CAS_REPO: ${CAS_REPO}
+        CAS_VERSION: ${CAS_VERSION}
+        CAS_JAVA_VERSION: ${CAS_JAVA_VERSION}
+        CAS_DOCKER_IMAGE_VERSION: ${CAS_DOCKER_IMAGE_VERSION}
+        ESUPOTPCAS_DEPENDENCY: ${ESUPOTPCAS_DEPENDENCY}
+        ESUPOTPCAS_VERSION: ${ESUPOTPCAS_VERSION}
+    image: ${CAS_DOCKER_IMAGE}:${CAS_DOCKER_IMAGE_VERSION:-latest}
+    container_name: cas-jres2026
+    hostname: cas.formation.lab
+    ports:
+      - "8443:443"
+    depends_on:
+      - ldap
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.2
+  ldap:
+    build:
+      context: ldap/
+      args:
+        LDAP_VERSION: ${LDAP_VERSION}
+        LDAP_DOCKER_IMAGE_VERSION: ${LDAP_DOCKER_IMAGE_VERSION}
+    image: ${LDAP_DOCKER_IMAGE}:${LDAP_DOCKER_IMAGE_VERSION:-latest}
+    container_name: ldap-jres2026
+    hostname: ldap.formation.lab
+    ulimits:
+      nofile: 1024
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.3
+  sp:
+    build:
+      context: sp/
+      args:
+        SP_DOCKER_IMAGE_VERSION: ${SP_DOCKER_IMAGE_VERSION}
+    image: ${SP_DOCKER_IMAGE}:${SP_DOCKER_IMAGE_VERSION:-latest}
+    container_name: sp-jres2026
+    hostname: sp.formation.lab
+    privileged: true
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.4
+  idp:
+    build:
+      context: centos9/
+      args:
+        STAGIAIRE_DOCKER_IMAGE_VERSION: ${STAGIAIRE_DOCKER_IMAGE_VERSION}
+    image: ${STAGIAIRE_DOCKER_IMAGE}:${STAGIAIRE_DOCKER_IMAGE_VERSION:-latest}
+    container_name: idp-stagiaire-jres2026
+    hostname: idp-stagiaire.formation.lab
+    privileged: true
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.5
+  esup-otp-db:
+    build:
+      context: esup-otp-db/
+      args:
+        MONGO_BASE_IMAGE: ${MONGO_BASE_IMAGE}
+        ESUPOTPDB_DOCKER_IMAGE_VERSION: ${ESUPOTPDB_DOCKER_IMAGE_VERSION}
+    image: ${ESUPOTPDB_DOCKER_IMAGE}:${ESUPOTPDB_DOCKER_IMAGE_VERSION:-latest}
+    container_name: esup-otp-db-jres2026
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: esup-otp-admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-ChangeIt}
+      MONGO_INITDB_DATABASE: esup-otp-formation
+      MONGO_DATABASE: esup-otp-formation
+      MONGO_USER: esup-otp-user
+      MONGO_PASSWORD: ${MONGO_USER_PASSWORD:-ChangeIt}
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://esup-otp-user:ChangeIt@esup-otp-db:27017/?authSource=esup-otp-formation --quiet
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+    hostname: esup-otp-db.formation.lab
+    privileged: true
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.7
+  esup-otp-api:
+    build:
+      context: esup-otp-api/
+      args:
+        NODEJS_VERSION: ${NODEJS_VERSION}
+        ESUPOTPAPI_REPO: ${ESUPOTPAPI_REPO}
+        ESUPOTPAPI_VERSION: ${ESUPOTPAPI_VERSION}
+        ESUPOTPAPI_DOCKER_IMAGE_VERSION: ${ESUPOTPAPI_DOCKER_IMAGE_VERSION}
+    image: ${ESUPOTPAPI_DOCKER_IMAGE}:${ESUPOTPAPI_DOCKER_IMAGE_VERSION:-latest}
+    container_name: esup-otp-api-jres2026
+    hostname: esup-otp-api.formation.lab
+    ports:
+      - "3443:443"
+    privileged: true
+    depends_on:
+      - esup-otp-db
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.8
+  esup-otp-manager:
+    build:
+      context: esup-otp-manager/
+      args:
+        NODEJS_VERSION: ${NODEJS_VERSION}
+        ESUPOTPMANAGER_REPO: ${ESUPOTPMANAGER_REPO}
+        ESUPOTPMANAGER_VERSION: ${ESUPOTPMANAGER_VERSION}
+        ESUPOTPMANAGER_DOCKER_IMAGE_VERSION: ${ESUPOTPMANAGER_DOCKER_IMAGE_VERSION}
+    image: ${ESUPOTPMANAGER_DOCKER_IMAGE}:${ESUPOTPMANAGER_DOCKER_IMAGE_VERSION:-latest}
+    container_name: esup-otp-manager-jres2026
+    hostname: esup-otp-manager.formation.lab
+    ports:
+      - "4443:443"
+    privileged: true
+    depends_on:
+      - esup-otp-db
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.9
+  browser:
+    build:
+      context: browser/
+      args:
+        BROWSER_DOCKER_IMAGE_VERSION: ${BROWSER_DOCKER_IMAGE_VERSION}
+    image: ${BROWSER_DOCKER_IMAGE}:${BROWSER_DOCKER_IMAGE_VERSION:-latest}
+    container_name: browser-jres2026
+    hostname: browser.formation.lab
+    privileged: true
+    environment:
+      LANG: fr_FR.ISO-8859-15
+      TZ: Europe/Paris
+      FF_OPEN_URL: https://services.renater.fr/federation/documentation/tutoriels/jres2026-152/index
+    volumes:
+      - "/docker/appdata/browser:/config:rw"
+    ports:
+      - "127.0.0.1:5800:5800"
+      - "127.0.0.1:5900:5900"
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.10
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express-jres2026
+    hostname: mongo.formation.lab
+    restart: always
+    depends_on:
+      - esup-otp-db
+    ports:
+      - "127.0.0.1:8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://esup-otp-admin:ChangeIt@esup-otp-db.formation.lab:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: mongo-express
+      ME_CONFIG_BASICAUTH_PASSWORD: ChangeIt
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.11
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    container_name: smtp4dev-jres2026
+    hostname: smtp4dev.formation.lab
+    restart: always
+    ports:
+      - "127.0.0.1:5000:80"
+      - "127.0.0.1:2525:25"
+      - "127.0.0.1:1143:143"
+    environment:
+      - ServerOptions__Urls=http://*:80
+      - ServerOptions__HostName=smtp4dev
+    networks:
+      lab-jres2026:
+        ipv4_address: 172.20.0.12

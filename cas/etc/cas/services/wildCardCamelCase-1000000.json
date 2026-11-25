@@ -1,0 +1,28 @@
+{
+  "@class" : "org.apereo.cas.services.CasRegisteredService",
+  "serviceId" : "^https://.*?",
+  "id" : 1000000,
+  "name" : "All websites",
+  "description" : "Authorize all https:// websites",
+  "proxyPolicy" : {
+    "@class" : "org.apereo.cas.services.RefuseRegisteredServiceProxyPolicy"
+  },
+  "evaluationOrder" : 1000000,
+  "usernameAttributeProvider" : {
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceUsernameProvider"
+  },
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy",
+    "authorizedToReleaseCredentialPassword" : false,
+    "authorizedToReleaseProxyGrantingTicket" : false
+  },
+  "consentPolicy": {
+    "@class": "org.apereo.cas.services.consent.DefaultRegisteredServiceConsentPolicy",
+    "enabled": false
+  },
+  "accessStrategy" : {
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy",
+    "enabled" : true,
+    "ssoEnabled" : true
+  }
+}

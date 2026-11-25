@@ -1,0 +1,18 @@
+[Unit]
+Description=esup-otp-manager nodejs app
+Documentation=https://github.com/EsupPortail/esup-otp-manager
+After=network.target
+
+[Service]
+Type=simple
+User=esup
+Group=esup
+WorkingDirectory=/opt/esup-otp-manager
+ExecStart=/usr/bin/node run
+Environment=NODE_EXTRA_CA_CERTS=/etc/pki/tls/certs/formation.lab_CA.pem
+StandardOutput=append:/opt/esup-otp-manager/log/node.log
+StandardError=append:/opt/esup-otp-manager/log/node.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
