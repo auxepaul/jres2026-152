@@ -62,6 +62,9 @@ services:
     build:
       context: centos9/
       args:
+        IDP_JAVA_VERSION: ${IDP_JAVA_VERSION}
+        IDP_TOMCAT_VERSION_MAJOR: ${IDP_TOMCAT_VERSION_MAJOR}
+        IDP_TOMCAT_VERSION: ${IDP_TOMCAT_VERSION}
         STAGIAIRE_DOCKER_IMAGE_VERSION: ${STAGIAIRE_DOCKER_IMAGE_VERSION}
     image: ${STAGIAIRE_DOCKER_IMAGE}:${STAGIAIRE_DOCKER_IMAGE_VERSION:-latest}
     container_name: idp-stagiaire-jres2026
