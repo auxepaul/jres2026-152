@@ -72,6 +72,11 @@ COPY ./etc/httpd/conf.d /etc/httpd/conf.d
 
 COPY ./etc/pki/tls/ /etc/pki/tls/
 
+COPY ./etc/pki/tls/certs/formation.lab_CA.pem /etc/pki/ca-trust/source/anchors/formation.lab_CA.pem
+
+RUN update-ca-trust && \
+    keytool -trustcacerts -keystore /usr/lib/jvm/jre-${IDP_JAVA_VERSION}/lib/security/cacerts -storepass changeit -noprompt -importcert -file /etc/pki/tls/certs/formation.lab_CA.pem --alias "formation.lab"
+
 RUN echo "include /usr/share/nano/xml.nanorc" > /root/.nanorc && \
     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
