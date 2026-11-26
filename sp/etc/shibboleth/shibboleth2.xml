@@ -26,15 +26,8 @@
                   checkAddress="false" handlerSSL="false" cookieProps="http"
                   redirectLimit="exact">
 
-            <!--
-            Configures SSO for a default IdP. To properly allow for >1 IdP, remove
-            entityID property and adjust discoveryURL to point to discovery service.
-            You can also override entityID on /Login query string, or in RequestMap/htaccess.
-            -->
-            <SSO entityID="https://idp.example.org/idp/shibboleth"
-                 discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
-              SAML2
-            </SSO>
+	    <!-- SSO assuré par un IdP unique par défaut -->
+            <SSO entityID="https://idp-stagiaire.formation.lab/idp/shibboleth">SAML2</SSO>
 
             <!-- SAML and local-only logout. -->
             <Logout>SAML2 Local</Logout>
@@ -82,6 +75,11 @@
               attributeValue="http://refeds.org/category/hide-from-discovery" />
         </MetadataProvider>
         -->
+
+        <MetadataProvider type="XML" validate="true"
+            url="https://idp-stagiaire.formation.lab/idp/shibboleth"
+            backingFilePath="idp.xml" maxRefreshDelay="7200">
+        </MetadataProvider>
 
         <!-- Example of remotely supplied "on-demand" signed metadata. -->
         <!--
