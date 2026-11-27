@@ -63,6 +63,7 @@ RUN mkdir -p /tmp/shibboleth && cd /tmp/shibboleth && \
 
 # Setup IdP
 COPY ./opt/shibboleth-idp/conf /opt/shibboleth-idp/conf
+COPY ./opt/shibboleth-idp/edit-webapp /opt/shibboleth-idp/edit-webapp
 RUN chown -R tomcat:tomcat /opt/shibboleth-idp
 
 RUN cd /opt/shibboleth-idp && \
